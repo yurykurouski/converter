@@ -31,8 +31,6 @@ export default function RootLayout() {
     return null;
   }
 
-  console.log("RootLayout");
-
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
