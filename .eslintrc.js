@@ -5,6 +5,7 @@ module.exports = {
     "plugin:react-native-a11y/all",
     "plugin:sonarjs/recommended-legacy",
   ],
+  ignorePatterns: ["/dist/*"],
   plugins: ["simple-import-sort", "unused-imports", "sonarjs"],
   rules: {
     "simple-import-sort/imports": "error",
@@ -20,6 +21,7 @@ module.exports = {
         argsIgnorePattern: "^_",
       },
     ],
+    "@typescript-eslint/no-wrapper-object-types": "off",
   },
   parserOptions: {
     sourceType: "module",

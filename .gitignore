@@ -1,4 +1,6 @@
 node_modules/
+ios/
+android/
 .expo/
 dist/
 npm-debug.*
@@ -10,6 +12,9 @@ npm-debug.*
 *.orig.*
 web-build/
 
+*.keystore
+credentials.json
+
 # macOS
 .DS_Store
 
@@ -20,3 +25,5 @@ expo-env.d.ts
 # @end expo-cli
 
 .vscode/
+
+.env
