@@ -1,0 +1,77 @@
+import { useRef, useState } from "react";
+import { Pressable, TextInput } from "react-native";
+
+import { CountryFlag, ThemedText } from "@/src/components";
+import { Colors } from "@/src/constants/Colors";
+import { useAppColorScheme, useCurrencyValue } from "@/src/hooks";
+import store from "@/src/store";
+import { EAvailableFiatNames } from "@/src/types";
+
+import { getStyles } from "./styles";
+
+export const CurrencyListItem = ({ item }: { item: string }) => {
+  const colorScheme = useAppColorScheme();
+  const styles = getStyles(colorScheme);
+
+  const {
+    rates,
+    selectCurrency,
+    selectedCurrency,
+    setSelectedCurrencyValue,
+    selectedCurrencyValue,
+  } = store.getState();
+
+  const [isFocused, setIsFocused] = useState(false);
+
+  const inputRef = useRef<TextInput>(null);
+
+  const value = useCurrencyValue({
+    rates,
+    selectedCurrency,
+    selectedCurrencyValue,
+    currencyName: item,
+  });
+
+  const handleSelect = () => {
+    setSelectedCurrencyValue(value);
+    selectCurrency(item);
+
+    setIsFocused(true);
+  };
+
+  const handleFocus = () => inputRef.current?.focus();
+
+  return (
+    <Pressable
+      accessibilityRole="button"
+      style={styles.container}
+      onPress={handleFocus}
+    >
+      <ThemedText
+        type="subtitle"
+        style={[
+          styles.currencyText,
+          !isFocused ? styles.blurredText : undefined,
+        ]}
+      >
+        {item}
+      </ThemedText>
+      <TextInput
+        ref={inputRef}
+        accessibilityLabel="Currency input field"
+        accessibilityHint="Currency input field"
+        placeholder={"0"}
+        value={value}
+        onChangeText={setSelectedCurrencyValue}
+        style={styles.input}
+        keyboardType="numeric"
+        clearButtonMode="while-editing"
+        onFocus={handleSelect}
+        onBlur={() => setIsFocused(false)}
+        returnKeyType="done"
+        placeholderTextColor={Colors[colorScheme ?? "light"].border}
+      />
+      <CountryFlag currencyCode={item as EAvailableFiatNames} size={30} />
+    </Pressable>
+  );
+};

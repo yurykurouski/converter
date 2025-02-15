@@ -1,11 +1,26 @@
-import { View } from "react-native";
+import { StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { ThemedText } from "@/src/components/UI/ThemedText";
+import { CurrenciesBottomSheet, CurrencyList } from "../components";
 
 export default function Home() {
+  const styles = useStyles();
+
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <ThemedText>Home Screen</ThemedText>
+    <View style={styles.container}>
+      <CurrencyList />
+      <CurrenciesBottomSheet />
     </View>
   );
 }
+
+const useStyles = () => {
+  const { bottom } = useSafeAreaInsets();
+
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      marginBottom: bottom,
+    },
+  });
+};
