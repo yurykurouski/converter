@@ -1,4 +1,5 @@
 module.exports = {
+  owner: "ymorpheus",
   name: "converter",
   slug: "converter",
   version: "1.0.0",
@@ -13,14 +14,14 @@ module.exports = {
   },
   ios: {
     supportsTablet: true,
-    bundleIdentifier: process.env.BUNDLE_ID,
+    bundleIdentifier: "com.zorkasoftware.converter",
   },
   android: {
     adaptiveIcon: {
       foregroundImage: "./src/assets/images/adaptive-icon.png",
       backgroundColor: "#ffffff",
     },
-    package: process.env.BUNDLE_ID,
+    package: "com.zorkasoftware.converter",
     softwareKeyboardLayoutMode: "pan",
   },
   web: {
@@ -43,7 +44,7 @@ module.exports = {
   },
   extra: {
     eas: {
-      projectId: process.env.EAS_PROJECT_ID,
+      projectId: "a652cd90-05f7-4286-a194-1f443271f535",
     },
   },
 };
