@@ -1,5 +1,5 @@
 import BottomSheet, { BottomSheetFlashList } from "@gorhom/bottom-sheet";
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 
 import {
   BottomSheetSearch,
@@ -24,26 +24,28 @@ export const CurrenciesBottomSheet = () => {
 
   const snapPoints = useMemo(() => [64, "100%"], []);
 
-  const renderItem = ({ item }: { item: CurrencyFiat | CurrencyCrypto }) => (
-    <CurrencyBottomSheetItem currency={item} />
+  const renderItem = useCallback(
+    ({ item }: { item: CurrencyFiat | CurrencyCrypto }) => (
+      <CurrencyBottomSheetItem currency={item} />
+    ),
+    []
   );
 
-  const currenciesToRender = useMemo(() => {
-    return currenciesFiat.filter((currency) => {
-      const currencyName = i18n.t(`currency.${currency.id}`);
+  const currenciesToRender = currenciesFiat.filter((currency) => {
+    const currencyName = i18n.t(`currency.${currency.id}`);
 
-      return (
-        currency.id.toLowerCase().includes(searchValue.toLowerCase()) ||
-        currencyName.toLowerCase().includes(searchValue.toLowerCase())
-      );
-    });
-  }, [currenciesFiat, searchValue]);
+    return (
+      currency.id.toLowerCase().includes(searchValue.toLowerCase()) ||
+      currencyName.toLowerCase().includes(searchValue.toLowerCase())
+    );
+  });
 
   return (
     <BottomSheet
       snapPoints={snapPoints}
       backgroundStyle={styles.background}
       handleIndicatorStyle={styles.handle}
+      enableDynamicSizing={false}
     >
       <BottomSheetFlashList
         data={currenciesToRender}
