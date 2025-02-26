@@ -1,16 +1,17 @@
 import BottomSheet, { BottomSheetFlashList } from "@gorhom/bottom-sheet";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 
 import {
   BottomSheetSearch,
   CurrencyBottomSheetItem,
   UIItemSeparatorComponent,
 } from "@/src/components";
-import { useAppColorScheme } from "@/src/hooks";
+import { useAppColorScheme, useBackHandler } from "@/src/hooks";
 import i18n from "@/src/i18n";
 import useStore from "@/src/store";
 import store from "@/src/store";
 import { CurrencyCrypto, CurrencyFiat } from "@/src/types";
+import { isAndroid } from "@/src/utils/platform";
 
 import { ListEmptyComponent } from "./ListEmptyComponent";
 import { getStyles } from "./styles";
@@ -19,9 +20,12 @@ export const CurrenciesBottomSheet = () => {
   const { currenciesFiat } = useStore();
 
   const [searchValue, setSearchValue] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const colorScheme = useAppColorScheme();
   const styles = getStyles(colorScheme);
+
+  const ref = useRef<BottomSheet>(null);
 
   const snapPoints = useMemo(() => [64, "100%"], []);
 
@@ -41,12 +45,32 @@ export const CurrenciesBottomSheet = () => {
     );
   });
 
+  const handleChange = (index: number) => {
+    setIsOpen(index === 1);
+  };
+
+  const backAction = useCallback(() => {
+    if (isAndroid) {
+      if (isOpen) {
+        ref.current?.collapse();
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }, [isOpen]);
+
+  useBackHandler(backAction);
+
   return (
     <BottomSheet
+      ref={ref}
       snapPoints={snapPoints}
       backgroundStyle={styles.background}
       handleIndicatorStyle={styles.handle}
       enableDynamicSizing={false}
+      onChange={handleChange}
     >
       <BottomSheetFlashList
         data={currenciesToRender}
