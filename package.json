@@ -51,6 +51,7 @@
     "@types/react": "~18.3.12",
     "eslint": "^8.57.0",
     "eslint-config-expo": "~8.0.1",
+    "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-native-a11y": "^3.5.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-sonarjs": "^2.0.4",

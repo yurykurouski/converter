@@ -4,6 +4,7 @@ module.exports = {
     "expo",
     "plugin:react-native-a11y/all",
     "plugin:sonarjs/recommended-legacy",
+    "plugin:react-hooks/recommended",
   ],
   ignorePatterns: ["/dist/*"],
   plugins: ["simple-import-sort", "unused-imports", "sonarjs"],
