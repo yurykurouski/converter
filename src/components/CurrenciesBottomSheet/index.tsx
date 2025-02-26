@@ -12,6 +12,7 @@ import useStore from "@/src/store";
 import store from "@/src/store";
 import { CurrencyCrypto, CurrencyFiat } from "@/src/types";
 
+import { ListEmptyComponent } from "./ListEmptyComponent";
 import { getStyles } from "./styles";
 
 export const CurrenciesBottomSheet = () => {
@@ -55,6 +56,7 @@ export const CurrenciesBottomSheet = () => {
         extraData={store.getState().selectedFiatCurrencies}
         keyExtractor={(item) => item.id}
         indicatorStyle={colorScheme === "dark" ? "white" : "black"}
+        ListEmptyComponent={ListEmptyComponent}
       />
       <BottomSheetSearch
         searchValue={searchValue}
