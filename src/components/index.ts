@@ -5,5 +5,6 @@ export { CurrencyBottomSheetItem } from "./CurrencyBottomSheetItem";
 export { CurrencyList } from "./CurrencyList";
 export { CurrencyListItem } from "./CurrencyListItem";
 export { CustomDrawer } from "./CustomDrawer";
+export { Header } from "./Header";
 export { ThemedText } from "./UI/ThemedText";
 export { UIItemSeparatorComponent } from "./UI/UIItemSeparatorComponent";
