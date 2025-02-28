@@ -1,11 +1,18 @@
 import BottomSheet, { BottomSheetFlashList } from "@gorhom/bottom-sheet";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import {
   BottomSheetSearch,
   CurrencyBottomSheetItem,
   UIItemSeparatorComponent,
 } from "@/src/components";
+import { BottomSheetContext } from "@/src/context/BottomSheetContext";
 import { useAppColorScheme, useBackHandler } from "@/src/hooks";
 import i18n from "@/src/i18n";
 import useStore from "@/src/store";
@@ -18,6 +25,7 @@ import { getStyles } from "./styles";
 
 export const CurrenciesBottomSheet = () => {
   const { currenciesFiat } = useStore();
+  const animatedIndex = useContext(BottomSheetContext);
 
   const [searchValue, setSearchValue] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -71,6 +79,8 @@ export const CurrenciesBottomSheet = () => {
       handleIndicatorStyle={styles.handle}
       enableDynamicSizing={false}
       onChange={handleChange}
+      animatedIndex={animatedIndex}
+      animateOnMount={isAndroid}
     >
       <BottomSheetFlashList
         data={currenciesToRender}
