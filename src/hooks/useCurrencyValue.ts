@@ -10,19 +10,23 @@ export const useCurrencyValue = ({
   selectedCurrency,
   selectedCurrencyValue,
   currencyName,
-}: TUseCurrencyValueProps) => {
+}: TUseCurrencyValueProps): string => {
   if (!selectedCurrency || !selectedCurrencyValue) {
     return "";
   }
 
-  const testRate = rates[selectedCurrency];
+  if (selectedCurrency === currencyName) {
+    return selectedCurrencyValue;
+  }
 
-  const inUSD = Number(selectedCurrencyValue) / Number(testRate);
+  const sourceRate = rates[selectedCurrency];
 
-  const test = inUSD * Number(rates[currencyName]);
-  const rounded = Math.round((test + Number.EPSILON) * 100) / 100;
+  const valueInUSD = Number(selectedCurrencyValue) / Number(sourceRate);
 
-  const value = rounded.toString();
+  const valueInTargetCurrency = valueInUSD * Number(rates[currencyName]);
 
-  return value;
+  const roundedValue =
+    Math.round((valueInTargetCurrency + Number.EPSILON) * 100) / 100;
+
+  return roundedValue.toString();
 };

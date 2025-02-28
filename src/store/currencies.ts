@@ -87,6 +87,14 @@ export const createCurrenciesSlice: StateCreator<
     set({ selectedCurrency: currencyId });
   },
   setSelectedCurrencyValue: (value: string) => {
+    if (value.charAt(value.length - 1) === ",") {
+      value = value.slice(0, -1) + ".";
+    }
+
+    if (!/^\d*(?:\.\d*)?$/.test(value)) {
+      return;
+    }
+
     if (value.length >= 12) {
       return;
     }
