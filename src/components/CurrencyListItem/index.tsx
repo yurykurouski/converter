@@ -39,13 +39,11 @@ export const CurrencyListItem = ({ item }: { item: string }) => {
     setIsFocused(true);
   };
 
-  const handleFocus = () => inputRef.current?.focus();
-
   return (
     <Pressable
       accessibilityRole="button"
       style={styles.container}
-      onPress={handleFocus}
+      onPress={inputRef.current?.focus}
     >
       <ThemedText
         type="subtitle"
