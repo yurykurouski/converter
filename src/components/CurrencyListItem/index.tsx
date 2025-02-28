@@ -39,6 +39,10 @@ export const CurrencyListItem = ({ item }: { item: string }) => {
     setIsFocused(true);
   };
 
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+
   return (
     <Pressable
       accessibilityRole="button"
@@ -65,7 +69,7 @@ export const CurrencyListItem = ({ item }: { item: string }) => {
         keyboardType="numeric"
         clearButtonMode="while-editing"
         onFocus={handleSelect}
-        onBlur={() => setIsFocused(false)}
+        onBlur={handleBlur}
         returnKeyType="done"
         placeholderTextColor={Colors[colorScheme ?? "light"].border}
       />
