@@ -6,6 +6,8 @@ import Animated, {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useAppColorScheme } from "@/src/hooks";
+import { getColor } from "@/src/utils";
+import { isAndroid } from "@/src/utils/platform";
 
 import { getStyles } from "./styles";
 import { BottomSheetSearchProps } from "./types";
@@ -20,6 +22,8 @@ export const BottomSheetSearch = (props: BottomSheetSearchProps) => {
   const keyboard = useAnimatedKeyboard();
 
   const animatedStyles = useAnimatedStyle(() => {
+    if (isAndroid) return {};
+
     if (keyboard.height.value <= bottom) {
       return {
         marginBottom: 0,
@@ -40,6 +44,7 @@ export const BottomSheetSearch = (props: BottomSheetSearchProps) => {
         style={styles.input}
         clearButtonMode="while-editing"
         placeholder="Search"
+        placeholderTextColor={getColor("text", colorScheme)}
       />
     </Animated.View>
   );
