@@ -1,7 +1,7 @@
 import Icon from "@expo/vector-icons/FontAwesome5";
 import { useState } from "react";
 import { View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { Pressable } from "react-native-gesture-handler";
 
 import { CountryFlag, ThemedText } from "@/src/components";
 import { useAppColorScheme } from "@/src/hooks";
@@ -35,8 +35,8 @@ export const CurrencyBottomSheetItem = (
   };
 
   return (
-    <TouchableOpacity
-      activeOpacity={0.7}
+    <Pressable
+      android_ripple={{ color: getColor("card", colorScheme) }}
       accessibilityRole="button"
       onPress={handlePress}
       style={styles.container}
@@ -60,6 +60,6 @@ export const CurrencyBottomSheetItem = (
       ) : (
         <Icon name="circle" size={28} color={getColor("border", colorScheme)} />
       )}
-    </TouchableOpacity>
+    </Pressable>
   );
 };
