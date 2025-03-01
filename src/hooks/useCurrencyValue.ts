@@ -20,8 +20,12 @@ export const useCurrencyValue = ({
   }
 
   const sourceRate = rates[selectedCurrency];
+  const parsedValue = parseFloat(selectedCurrencyValue);
 
-  const valueInUSD = Number(selectedCurrencyValue) / Number(sourceRate);
+  if (isNaN(parsedValue)) {
+    return "";
+  }
+  const valueInUSD = parsedValue / Number(sourceRate);
 
   const valueInTargetCurrency = valueInUSD * Number(rates[currencyName]);
 
