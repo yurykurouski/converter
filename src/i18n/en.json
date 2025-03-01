@@ -174,7 +174,8 @@
   },
   "currencyInput": {
     "errorMessage": "Wrong value!",
-    "placeholder": "Search"
+    "placeholder": "Search",
+    "accessibilityHint": "Search for a currency"
   },
   "currenciesMain": {
     "currencyDeleted": "was deleted",
