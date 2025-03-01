@@ -6,6 +6,7 @@ import Animated, {
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { useAppColorScheme } from "@/src/hooks";
+import i18n from "@/src/i18n";
 import { getColor } from "@/src/utils";
 import { isAndroid } from "@/src/utils/platform";
 
@@ -37,13 +38,13 @@ export const BottomSheetSearch = (props: BottomSheetSearchProps) => {
   return (
     <Animated.View style={[animatedStyles, styles.inputContainer]}>
       <TextInput
-        accessibilityLabel="Search input field"
-        accessibilityHint="Search for a currency"
+        accessibilityLabel={i18n.t("currencyInput.accessibilityHint")}
+        accessibilityHint={i18n.t("currencyInput.accessibilityHint")}
         value={searchValue}
         onChangeText={setSearchValue}
         style={styles.input}
         clearButtonMode="while-editing"
-        placeholder="Search"
+        placeholder={i18n.t("currencyInput.placeholder")}
         placeholderTextColor={getColor("text", colorScheme)}
       />
     </Animated.View>
