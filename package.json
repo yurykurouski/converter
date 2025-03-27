@@ -11,7 +11,9 @@
     "build:dev:android": "eas build --profile development-simulator --platform android --local",
     "build:prod:android": "eas build --profile production --platform android --local",
     "build:prod:ios": "eas build --profile production --platform ios --local",
-    "build:dev:ios": "eas build --profile development-simulator --platform ios --local"
+    "build:dev:ios": "eas build --profile development-simulator --platform ios --local",
+    "prepare": "husky",
+    "prepush": "npm run type:check && npm run lint"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
@@ -56,6 +58,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "eslint-plugin-sonarjs": "^2.0.4",
     "eslint-plugin-unused-imports": "^4.1.4",
+    "husky": "^9.1.7",
     "typescript": "^5.3.3"
   },
   "expo": {
