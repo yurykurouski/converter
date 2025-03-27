@@ -15,7 +15,7 @@ import { TCurrencyBottomSheetItemProps } from "./types";
 export const CurrencyBottomSheetItem = (
   props: TCurrencyBottomSheetItemProps,
 ) => {
-  const { currency, selectedCurrencyType } = props;
+  const { currency, /* selectedCurrencyType */ } = props;
 
   const colorScheme = useAppColorScheme();
   const styles = getStyles(colorScheme);
