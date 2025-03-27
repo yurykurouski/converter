@@ -13,11 +13,17 @@ export const getStyles = (colorScheme: "light" | "dark") => {
       flexDirection: "row",
       alignItems: "center",
     },
-    input: {
+    inputWrapper: {
       flex: 1,
-      padding: 8,
+      flexDirection: "row",
+      alignItems: "center",
       borderRadius: 25,
       backgroundColor: getColor("background", colorScheme),
+      paddingHorizontal: 8,
+    },
+    input: {
+      flex: 1,
+      paddingVertical: 8,
       color: getColor("text", colorScheme),
       flexGrow: 1,
       ...Fonts.defaultSemiBold,

@@ -1,4 +1,4 @@
-import { TextInput } from "react-native";
+import { TextInput, View } from "react-native";
 import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
@@ -42,22 +42,24 @@ export const BottomSheetSearch = (props: BottomSheetSearchProps) => {
 
   return (
     <Animated.View style={[styles.inputContainer, animatedStyles]}>
-      <TextInput
-        accessibilityLabel={i18n.t("currencyInput.accessibilityHint")}
-        accessibilityHint={i18n.t("currencyInput.accessibilityHint")}
-        value={searchValue}
-        onChangeText={setSearchValue}
-        style={styles.input}
-        clearButtonMode="while-editing"
-        placeholder={i18n.t("currencyInput.placeholder")}
-        placeholderTextColor={getColor("text", colorScheme)}
-      />
-
-      {searchValue && isAndroid && (
-        <CrossButton
-          onPress={handleClear}
+      <View style={styles.inputWrapper}>
+        <TextInput
+          accessibilityLabel={i18n.t("currencyInput.accessibilityHint")}
+          accessibilityHint={i18n.t("currencyInput.accessibilityHint")}
+          value={searchValue}
+          onChangeText={setSearchValue}
+          style={styles.input}
+          clearButtonMode="while-editing"
+          placeholder={i18n.t("currencyInput.placeholder")}
+          placeholderTextColor={getColor("text", colorScheme)}
         />
-      )}
+
+        {searchValue && isAndroid && (
+          <CrossButton
+            onPress={handleClear}
+          />
+        )}
+      </View>
     </Animated.View>
   );
 };
