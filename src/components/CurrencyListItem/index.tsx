@@ -47,12 +47,15 @@ export const CurrencyListItem = ({ item }: { item: string }) => {
   const handleClear = () => {
     setSelectedCurrencyValue("");
   };
+  const handlePress = () => {
+    inputRef.current?.focus();
+  }
 
   return (
     <Pressable
       accessibilityRole="button"
       style={styles.container}
-      onPress={inputRef.current?.focus}
+      onPress={handlePress}
     >
       <ThemedText
         type="subtitle"
