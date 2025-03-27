@@ -13,7 +13,7 @@ export const CountryFlag = (props: CountryFlagProps) => {
   const colorScheme = useAppColorScheme();
   const styles = getStyles(colorScheme, size);
 
-  const flagImg = flags[currencyCode];
+  const flagImg = flags[currencyCode as keyof typeof flags];
 
   return (
     <View style={styles.flagContainer}>

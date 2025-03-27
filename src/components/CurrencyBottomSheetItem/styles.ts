@@ -13,7 +13,7 @@ export const getStyles = (colorScheme: AppColorScheme) => {
       padding: 8,
       backgroundColor: getColor("background", colorScheme),
       borderRadius: 8,
-      marginHorizontal: 16,
+      marginLeft: 16,
       gap: 8,
     },
     leftContainer: {

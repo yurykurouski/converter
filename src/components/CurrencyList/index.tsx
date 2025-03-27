@@ -1,18 +1,18 @@
 import { FlashList } from "@shopify/flash-list";
 import { View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { CurrencyListItem, UIItemSeparatorComponent } from "@/src/components";
+import {
+  CurrencyListItem,
+  ListFooterComponent,
+  UIItemSeparatorComponent,
+} from "@/src/components";
 import useStore from "@/src/store";
 import store from "@/src/store";
 
-import { getStyles } from "./styles";
+import { styles } from "./styles";
 
 export const CurrencyList = () => {
   const { selectedFiatCurrencies } = useStore();
-
-  const { bottom } = useSafeAreaInsets();
-  const styles = getStyles(bottom);
 
   const renderItem = ({ item }: { item: string }) => (
     <CurrencyListItem item={item} />
@@ -27,6 +27,7 @@ export const CurrencyList = () => {
         data={selectedFiatCurrencies}
         renderItem={renderItem}
         ItemSeparatorComponent={UIItemSeparatorComponent}
+        ListFooterComponent={ListFooterComponent}
         automaticallyAdjustKeyboardInsets
         keyboardDismissMode="interactive"
         keyboardShouldPersistTaps="handled"

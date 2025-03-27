@@ -27,4 +27,9 @@ export const Fonts = StyleSheet.create({
     fontSize: 16,
     lineHeight: 30,
   },
+  smallSemiBold: {
+    fontSize: 12,
+    lineHeight: 14,
+    fontWeight: "600",
+  },
 });

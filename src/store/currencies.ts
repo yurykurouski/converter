@@ -2,15 +2,18 @@ import { StateCreator } from "zustand";
 
 import { getCryptoCurrencies, getFiatCurrencies } from "@/src/services/rates";
 import {
-  CurrencyCrypto,
-  CurrencyFiat,
+  Currency,
+  CurrencyType,
   EAvailableCryptoNames,
-  EAvailableFiatNames,
+  EAvailableFiatNames
 } from "@/src/types";
 
+import { cryptoAdapter } from "./adapters/cryptoAdapter";
+import { fiatAdapter } from "./adapters/fiatAdapter";
+
 export type CurrenciesSlice = {
-  currenciesFiat: CurrencyFiat[];
-  currenciesCrypto: CurrencyCrypto[];
+  currenciesFiat: Currency[];
+  currenciesCrypto: Currency[];
   selectedFiatCurrencies: string[];
   selectedCryptoCurrencies: string[];
   selectedCurrency?: string;
@@ -18,11 +21,14 @@ export type CurrenciesSlice = {
 
   isLoading: boolean;
 
+  selectedCurrencyType: CurrencyType;
+
   selectFiatCurrency: (currencyId: string) => void;
   loadFiatCurrencies: () => Promise<void>;
   loadCryptoCurrencies: () => Promise<void>;
   selectCurrency: (currencyId: string) => void;
   setSelectedCurrencyValue: (value: string) => void;
+  setSelectedCurrencyType: (currencyType: CurrencyType) => void;
 };
 
 export const createCurrenciesSlice: StateCreator<
@@ -40,6 +46,9 @@ export const createCurrenciesSlice: StateCreator<
   selectedCurrencyValue: undefined,
 
   isLoading: false,
+
+  selectedCurrencyType: "fiat",
+
   selectFiatCurrency: (currencyId: string) => {
     const isSelected = get().selectedFiatCurrencies.includes(currencyId);
 
@@ -59,7 +68,7 @@ export const createCurrenciesSlice: StateCreator<
         (currency) => !!EAvailableFiatNames[currency.id]
       );
 
-      set({ currenciesFiat: availableFiatCurrencies });
+      set({ currenciesFiat: fiatAdapter(availableFiatCurrencies) });
     } catch (error) {
       console.error("Error loading fiat currencies", error);
     } finally {
@@ -76,7 +85,7 @@ export const createCurrenciesSlice: StateCreator<
         (currency) => !!EAvailableCryptoNames[currency.code]
       );
 
-      set({ currenciesCrypto: availableCryptoCurrencies });
+      set({ currenciesCrypto: cryptoAdapter(availableCryptoCurrencies) });
     } catch (error) {
       console.error("Error loading crypto currencies", error);
     } finally {
@@ -107,4 +116,7 @@ export const createCurrenciesSlice: StateCreator<
 
     set({ selectedCurrencyValue: value });
   },
+  setSelectedCurrencyType: (currencyType: CurrencyType) => {
+    set({ selectedCurrencyType: currencyType });
+  }
 });

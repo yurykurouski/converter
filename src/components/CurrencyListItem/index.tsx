@@ -1,11 +1,12 @@
 import { useRef, useState } from "react";
 import { Pressable, TextInput } from "react-native";
 
-import { CountryFlag, ThemedText } from "@/src/components";
+import { CountryFlag, CrossButton, ThemedText } from "@/src/components";
 import { Colors } from "@/src/constants/Colors";
 import { useAppColorScheme, useCurrencyValue } from "@/src/hooks";
 import store from "@/src/store";
 import { EAvailableFiatNames } from "@/src/types";
+import { isAndroid } from "@/src/utils/platform";
 
 import { getStyles } from "./styles";
 
@@ -43,6 +44,10 @@ export const CurrencyListItem = ({ item }: { item: string }) => {
     setIsFocused(false);
   };
 
+  const handleClear = () => {
+    setSelectedCurrencyValue("");
+  };
+
   return (
     <Pressable
       accessibilityRole="button"
@@ -52,7 +57,6 @@ export const CurrencyListItem = ({ item }: { item: string }) => {
       <ThemedText
         type="subtitle"
         style={[
-          styles.currencyText,
           !isFocused ? styles.blurredText : undefined,
         ]}
       >
@@ -73,6 +77,7 @@ export const CurrencyListItem = ({ item }: { item: string }) => {
         returnKeyType="done"
         placeholderTextColor={Colors[colorScheme ?? "light"].border}
       />
+      {value && isFocused && isAndroid && <CrossButton onPress={handleClear} />}
       <CountryFlag currencyCode={item as EAvailableFiatNames} size={30} />
     </Pressable>
   );

@@ -1,9 +1,8 @@
 import { StyleSheet } from "react-native";
 
+import { Fonts } from "@/src/components/UI";
 import { AppColorScheme } from "@/src/constants/Colors";
 import { getColor } from "@/src/utils";
-
-import { Fonts } from "../UI";
 
 export const getStyles = (colorScheme: AppColorScheme) =>
   StyleSheet.create({
@@ -15,9 +14,6 @@ export const getStyles = (colorScheme: AppColorScheme) =>
       alignItems: "center",
       gap: 8,
     },
-    currencyText: {
-      width: 50,
-    },
     blurredText: {
       opacity: 0.5,
     },
@@ -25,5 +21,8 @@ export const getStyles = (colorScheme: AppColorScheme) =>
       flex: 1,
       color: getColor("text", colorScheme),
       ...Fonts.subtitle,
+    },
+    closeIcon: {
+      paddingHorizontal: 2,
     },
   });

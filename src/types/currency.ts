@@ -3,12 +3,6 @@ import {
   EAvailableFiatNames,
 } from "./availableCurrencies";
 
-// type Currency = {
-//   id: keyof typeof flags;
-//   min_size: string;
-//   name: string;
-// };
-
 type CurrencyFiat = {
   id: keyof typeof EAvailableFiatNames;
   min_size: string;
@@ -22,6 +16,14 @@ type CurrencyCrypto = {
   name: string;
 };
 
-type Currency = CurrencyFiat | CurrencyCrypto;
+export type CurrencyType = "fiat" | "crypto";
+
+type Currency = {
+  id: string;
+  name: string;
+  min_size?: string;
+  color?: string;
+  type: CurrencyType;
+}
 
 export type { Currency, CurrencyCrypto, CurrencyFiat };

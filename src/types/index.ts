@@ -2,4 +2,4 @@ export {
   EAvailableCryptoNames,
   EAvailableFiatNames,
 } from "./availableCurrencies";
-export { Currency, CurrencyCrypto, CurrencyFiat } from "./currency";
+export { Currency, CurrencyCrypto, CurrencyFiat, CurrencyType } from "./currency";

@@ -11,7 +11,8 @@ export type ThemedTextProps = TextProps & {
     | "title"
     | "defaultSemiBold"
     | "subtitle"
-    | "link";
+    | "link"
+    | "smallSemiBold";
 };
 
 export function ThemedText({
@@ -31,6 +32,7 @@ export function ThemedText({
         type === "defaultSemiBold" ? styles.defaultSemiBold : undefined,
         type === "subtitle" ? styles.subtitle : undefined,
         type === "link" ? styles.link : undefined,
+        type === "smallSemiBold" ? styles.smallSemiBold : undefined,
         style,
       ]}
       {...rest}

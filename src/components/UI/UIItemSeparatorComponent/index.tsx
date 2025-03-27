@@ -1,8 +1,12 @@
-import { View } from "react-native";
+import { StyleProp, View, ViewStyle } from "react-native";
 
 import { styles } from "./styles";
 
-export const UIItemSeparatorComponent = (props) => {
+type UIItemSeparatorComponentProps = {
+  containerStyle?: StyleProp<ViewStyle>;
+};
+
+export const UIItemSeparatorComponent = (props: UIItemSeparatorComponentProps) => {
   const { containerStyle } = props;
 
   return <View style={[styles.separator, containerStyle]} />;

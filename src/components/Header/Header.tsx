@@ -1,16 +1,16 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useState } from "react";
 import React from "react";
 import { LayoutChangeEvent, View } from "react-native";
 import Animated, { useAnimatedStyle } from "react-native-reanimated";
 
-import { BottomSheetContext } from "@/src/context/BottomSheetContext";
+import { ThemedText } from "@/src/components/UI";
+import { useBottomSheetContext } from "@/src/context/BottomSheetContext";
 import i18n from "@/src/i18n";
 
-import { ThemedText } from "../UI";
 import { styles } from "./styles";
 
 export const Header = () => {
-  const animatedIndex = useContext(BottomSheetContext);
+  const { animatedIndex } = useBottomSheetContext();
   const [height, setHeight] = useState(0);
 
   const animStyles = useAnimatedStyle(() => {

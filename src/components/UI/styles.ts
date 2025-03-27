@@ -30,5 +30,9 @@ export const getStyles = (colorScheme: "light" | "dark") => {
       ...Fonts.link,
       color: getColor("text", colorScheme),
     },
+    smallSemiBold: {
+      ...Fonts.smallSemiBold,
+      color: getColor("text", colorScheme),
+    },
   });
 };

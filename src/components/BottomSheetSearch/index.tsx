@@ -5,6 +5,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { CrossButton } from "@/src/components/UI";
 import { useAppColorScheme } from "@/src/hooks";
 import i18n from "@/src/i18n";
 import { getColor } from "@/src/utils";
@@ -35,8 +36,12 @@ export const BottomSheetSearch = (props: BottomSheetSearchProps) => {
     };
   });
 
+  const handleClear = () => {
+    setSearchValue("");
+  };
+
   return (
-    <Animated.View style={[animatedStyles, styles.inputContainer]}>
+    <Animated.View style={[styles.inputContainer, animatedStyles]}>
       <TextInput
         accessibilityLabel={i18n.t("currencyInput.accessibilityHint")}
         accessibilityHint={i18n.t("currencyInput.accessibilityHint")}
@@ -47,6 +52,12 @@ export const BottomSheetSearch = (props: BottomSheetSearchProps) => {
         placeholder={i18n.t("currencyInput.placeholder")}
         placeholderTextColor={getColor("text", colorScheme)}
       />
+
+      {searchValue && isAndroid && (
+        <CrossButton
+          onPress={handleClear}
+        />
+      )}
     </Animated.View>
   );
 };

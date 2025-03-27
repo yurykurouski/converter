@@ -10,9 +10,9 @@ export const getStyles = (colorScheme: "light" | "dark") => {
     background: {
       backgroundColor: getColor("card", colorScheme),
     },
-    handle: {
-      backgroundColor: getColor("text", colorScheme),
-      width: 60,
+    scrollContainer: {
+      flexDirection: "row",
+      flex: 1,
     },
   });
 };

@@ -1,9 +1,9 @@
 import React from "react";
 import { View } from "react-native";
 
+import { ThemedText } from "@/src/components/UI";
 import i18n from "@/src/i18n";
 
-import { ThemedText } from "../../UI";
 import { styles } from "./styles";
 
 export const ListEmptyComponent = () => {
