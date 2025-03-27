@@ -5,9 +5,6 @@
 
 import { Platform } from "react-native";
 
-const tintColorLight = "#0a7ea4";
-const tintColorDark = "#fff";
-
 export type ColorsMap = {
   primary: string;
   background: string;
@@ -21,20 +18,20 @@ export type ColorsType = Record<"light" | "dark", ColorsMap>;
 export type AppColorScheme = "light" | "dark";
 export const Colors: ColorsType = {
   light: {
-    primary: "rgb(0, 122, 255)",
+    primary: "#007aff",
     background: "#f0f0f3",
     card: "#e9e9f0",
-    text: "rgb(28, 28, 30)",
-    border: "rgb(216, 216, 216)",
-    notification: "rgb(255, 59, 48)",
+    text: "#1c1c1e",
+    border: "#d8d8d8",
+    notification: "#ff3b30",
   },
   dark: {
-    primary: "rgb(10, 132, 255)",
+    primary: "#0a84ff",
     background: "#202124",
     card: "#1a1921",
-    text: "rgb(229, 229, 231)",
-    border: "rgb(39, 39, 41)",
-    notification: "rgb(255, 69, 58)",
+    text: "#e5e5e7",
+    border: "#272729",
+    notification: "#ff453a",
   },
 };
 
@@ -109,12 +106,3 @@ export const lightTheme: ReactNavigation.Theme = {
   colors: Colors.light,
   fonts: fonts,
 };
-
-/* 
-fonts: {
-    regular: FontStyle;
-    medium: FontStyle;
-    bold: FontStyle;
-    heavy: FontStyle;
-  };
-*/
