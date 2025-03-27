@@ -78,7 +78,7 @@ export const CurrencyListItem = ({ item }: { item: string }) => {
         onFocus={handleSelect}
         onBlur={handleBlur}
         returnKeyType="done"
-        placeholderTextColor={Colors[colorScheme ?? "light"].border}
+        placeholderTextColor={`${Colors[colorScheme ?? "light"].text}${isFocused ? "" : "50"}`}
       />
       {value && isFocused && isAndroid && <CrossButton onPress={handleClear} />}
       <CountryFlag currencyCode={item as EAvailableFiatNames} size={30} />
